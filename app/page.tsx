@@ -21,7 +21,7 @@ const Home = () => {
   }, [input]);
 
   useEffect(() => {
-    function handleClickOutside(event) {
+    function handleClickOutside(event: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setShowDownloadDropdown(false);
       }
