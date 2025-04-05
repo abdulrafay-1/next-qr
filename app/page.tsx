@@ -1,17 +1,15 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { QRCodeSVG } from "qrcode.react";
-import Link from "next/link";
 import { colors, socialMediaLogos } from "../src/constants/QrConstant";
 import qrDownload from "@/src/utils/qrDownload";
-import fbLogo from "../src/images/fbLogo.png";
 import Image from "next/image";
 const Home = () => {
   const [input, setInput] = useState("");
   const [debounceText, setDebounceText] = useState("");
   const [activeColor, setActiveColor] = useState("#000");
-  const [logoBase64, setLogoBase64] = useState<string>("");
-  const [activeImg, setActiveImg] = useState("");
+  const [logoBase64, setLogoBase64] = useState("");
+  const [activeImg, setActiveImg] = useState<string | null>("");
   const qrcodeRef = useRef<SVGSVGElement | null>(null);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const [showDownloadDropdown, setShowDownloadDropdown] = useState(false);
@@ -101,9 +99,9 @@ const Home = () => {
           <div className="flex justify-center items-center flex-wrap gap-2 py-3">
             <p>Logos :</p>
             <div
-              onClick={() => setActiveImg("")}
+              onClick={() => setActiveImg(null)}
               className={`cursor-pointer rounded-md ${
-                activeImg === "" && "outline outline-white"
+                !activeImg && "outline outline-white"
               }`}
             >
               <Image
